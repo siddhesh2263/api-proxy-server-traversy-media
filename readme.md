@@ -1,4 +1,4 @@
-# API Proxy Server using Node JS
+# API Proxy Server using Node.js
 
 ## Introduction
 
@@ -15,7 +15,7 @@ This project implements a lightweight API proxy server that sits between the cli
 ### Core Workflow
 
 1. The client sends a request to the Express server (e.g., /api?q=Boston).
-2. The server reads the API key from environment variables stored in a .env file.
+2. The server reads the API key from environment variables stored in a `.env` file.
 3. The server forwards the request to the external API using an HTTP client.
 4. The external API responds with data.
 5. The proxy server returns the response to the client without exposing the API key.
@@ -44,7 +44,11 @@ The Express server also serves the frontend, allowing both client and proxy to r
 
 <br>
 
-Create the public folder. Modify the query to use your API key.
+## Development
+
+The below steps are performed to develop this system.
+
+Create the `public` folder. Modify the query to use your API key.
 
 <p align="center">
   <img 
@@ -67,26 +71,26 @@ Dependencies used:
 npm i express dotenv cors needle
 ```
 
-needle is a lighweight HTTP client. The front end will make a request to our server, and then we will use needle to make a request using the public API to OpenWeather.
+`needle` is a lighweight HTTP client. The front end will make a request to our server, and then we will use needle to make a request using the public API to OpenWeather.
 
 Install another dependency:
 ```
 npm i -D nodemon
 ```
--D is used to signify that it is installed as a dev dependency. nodemon will allow us to make changes without having to restart the server everytime.
+`-D` is used to signify that it is installed as a dev dependency. `nodemon` will allow us to make changes without having to restart the server everytime.
 
-Make changes in the scripts part in package.json, to add start and dev commands.
+Make changes in the scripts part in `package.json`, to add start and dev commands.
 ```
 "scripts": {
     "start": "node index",
     "dev": "nodemon index"
   },
 ```
-The index file will the main entry point, called index.js.
+The index file will the main entry point, called `index.js`.
 
-Create a file index.js in root.
+Create a file `index.js` in root.
 
-The below line means it will first check if PORT is present in the environment variables, otherwise it will use PORT 5000:
+The below line means it will first check if PORT is present in the environment variables, otherwise it will use `PORT 5000`:
 ```
 const PORT = process.env.PORT || 5000
 ```
@@ -96,7 +100,7 @@ Run command to run server:
 npm run dev
 ```
 
-Now let's take care of storing the API keys. We installed the dotenv package. Import the dotenv package, and then create a .env file in root.
+Now let's take care of storing the API keys. We installed the dotenv package. Import the `dotenv` package, and then create a `.env` file in root.
 In this file, we created environment variables.
 
 Now, create a route, and test if response is received.
@@ -111,13 +115,15 @@ Now, create a route, and test if response is received.
 
 <br>
 
-Then, create a routes folder in root. Create a index.js file, export the module as router, and move the route information from root index.js to this index.js under routes folder.
+Then, create a routes folder in root. Create a `index.js` file, export the module as `router`, and move the route information from root `index.js` to this `index.js` under routes folder.
 
-needle returns a promise, so we need to use async.
-We need to use process.env to get the environment variables.
+`needle` returns a promise, so we need to use `async`.
+
+We need to use `process.env` to get the environment variables.
+
 Also, when environment variables are added, the server needs to be restarted.
 
-We will use URL search params to include the API key name and value.
+We will use URL `search params` to include the API key name and value.
 
 Brief on below code:
 ```
@@ -139,13 +145,13 @@ router.get('/', async (req, res) => {
     }
 })
 ```
-We have the API key and value in the .env file, but to use it, we will use search params. Above is the strucutre how the key name and value are set, and then used to make the request.
+We have the API key and value in the `.env` file, but to use it, we will use search params. Above is the strucutre how the key name and value are set, and then used to make the request.
 
-I was getting ECONNREFUSED due to the following:
+I was getting `ECONNREFUSED` due to the following:
 ```
 API_BASE_URL = "https:/api.openweathermap.org/data/2.5/weather"
 ```
-There should be // instead of / after https.
+There should be `//` instead of `/` after https.
 
 We get the following response:
 ```
@@ -234,7 +240,7 @@ app.set('trust proxy', 1)
 
 ## Caching
 
-In Postman under Headers, under cache-control, the max-age keeps decreasing. Once it reaches 0, it will make the actual request, and store it for 2 more minutes.
+In Postman under Headers, under `cache-control`, the `max-age` keeps decreasing. Once it reaches 0, it will make the actual request, and store it for 2 more minutes.
 
 It is added as a second argument:
 ```
@@ -257,12 +263,12 @@ The minutes set depends on the API usage. For instance, if it's something that c
 
 <br>
 
-Now we need to be able to use this backend code with out client side application, which we have in the public folder. The below code should load the index.html at localhost:5000:
+Now we need to be able to use this backend code with out client side application, which we have in the public folder. The below code should load the `index.html` at `localhost:5000`:
 ```
 app.use(express.static('public'))
 ```
 
-In the public/index.html file, we will update the url to following:
+In the `public/index.html` file, we will update the url to following:
 ```
 const url = `/api?q=${city}`
 ```
@@ -278,18 +284,6 @@ Now, if we see in console, the API key is not visible. It is stored on the serve
     width="700"
   />
 </p>
-
-<br>
-
-## Deploy to Heroku (Skipped due to payment requirement as of now)
-
-Create a .gitignore file.
-
-.env.example file is a sample file to be hosted on GitHub, to provide boilerplate what needs to be set in .env file.
-
-Create a Heroku account.
-
-28:10
 
 <br>
 
