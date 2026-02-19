@@ -2,47 +2,11 @@
 
 ## Introduction
 
-Modern web applications often call third-party APIs directly from the client side. This exposes sensitive information such as API keys in the browser, making them easy to extract and misuse. Exposed keys can lead to unauthorized access, quota exhaustion, and security risks.
+We will hide API keys.
 
-To address this issue, a backend proxy server is built using Node.js and Express. Instead of the client communicating directly with the external service, requests are routed through the server. The server securely injects the API key, applies usage controls, and returns only the required data to the client. This approach improves security, control, and performance.
+A weather service is created, but if the source code is checked in the console, the API key is visible.
 
-<br>
-
-## Project Overview
-
-This project implements a lightweight API proxy server that sits between the client application and a public weather API.
-
-### Core Workflow
-
-1. The client sends a request to the Express server (e.g., /api?q=Boston).
-2. The server reads the API key from environment variables stored in a .env file.
-3. The server forwards the request to the external API using an HTTP client.
-4. The external API responds with data.
-5. The proxy server returns the response to the client without exposing the API key.
-
-<br>
-
-## Key Features Implemented
-
-### API Key Protection
-Sensitive credentials are stored securely on the server and never exposed to the browser.
-
-### Request Forwarding
-Query parameters from the client are dynamically passed to the external API.
-
-### Rate Limiting
-Controls how many requests a client can make within a time window to prevent abuse.
-
-### Caching
-Frequently requested data is temporarily stored to reduce redundant external calls and improve response time.
-
-### Environment-Based Configuration
-All secrets and runtime values are managed using environment variables for safer deployment.
-
-### Static Frontend Hosting
-The Express server also serves the frontend, allowing both client and proxy to run from the same origin.
-
-<br>
+We will add rate limiting, and add some caching. We will create our own server.
 
 Create the public folder. Modify the query to use your API key.
 
@@ -294,5 +258,3 @@ Create a Heroku account.
 <br>
 
 ## Conclusion
-
-The final system acts as a secure middleware layer. It hides credentials, regulates traffic, improves efficiency, and provides a production-friendly way to consume third-party APIs.
