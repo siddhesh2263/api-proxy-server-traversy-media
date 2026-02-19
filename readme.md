@@ -1,5 +1,18 @@
 # API Proxy Server using Node.js
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Project Overview](#project-overview)
+  - [Core Workflow](#core-workflow)
+- [Key Features Implemented](#key-features-implemented)
+- [Development](#Development)
+- [Rate Limiting](#rate-limiting)
+- [Caching](#caching)
+- [Conclusion](#conclusion)
+
+<br>
+
 ## Introduction
 
 Modern web applications often call third-party APIs directly from the client side. This exposes sensitive information such as API keys in the browser, making them easy to extract and misuse. Exposed keys can lead to unauthorized access, quota exhaustion, and security risks.
