@@ -12,9 +12,11 @@ Create the public folder. Modify the query to use your API key.
   <img 
     src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/001_api_key_visible.png?raw=true"
     alt="API Key Visible"
-    width="400"
+    width="700"
   />
 </p>
+
+<br>
 
 Run command:
 ```
@@ -65,9 +67,11 @@ Now, create a route, and test if response is received.
   <img 
     src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/002_no_param_success.png?raw=true"
     alt="No Param Success"
-    width="400"
+    width="700"
   />
 </p>
+
+<br>
 
 Then, create a routes folder in root. Create a index.js file, export the module as router, and move the route information from root index.js to this index.js under routes folder.
 
@@ -120,9 +124,11 @@ Now in Postman, when we don't pass anything, the `url.parse(req.url, true).query
   <img 
     src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/003_object_param_city.png?raw=true"
     alt="Object Param City"
-    width="400"
+    width="700"
   />
 </p>
+
+<br>
 
 In the params, it is passed as a spread operator. So, let's look at the below code:
 ```
@@ -137,9 +143,11 @@ What this essentially means that whatever is passed as a query parameter in the 
   <img 
     src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/004_city_api_call.png?raw=true"
     alt="City API Call"
-    width="400"
+    width="700"
   />
 </p>
+
+<br>
 
 To check the URL that was sent to the public server, use the below code:
 ```
@@ -147,6 +155,8 @@ if(process.env.NODE_ENV != 'production') {
             console.log(`REQUEST: ${API_BASE_URL}?${params}`)
         }
 ```
+
+<br>
 
 ## Rate Limiting
 
@@ -159,9 +169,11 @@ npm i express-rate-limit apicache
   <img 
     src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/005_too_many_requests_error.png?raw=true"
     alt="Too Many Requests Error"
-    width="400"
+    width="700"
   />
 </p>
+
+<br>
 
 In the headers in Postman we can see the rate limit information - what is the limit, and how many rate limits are remaining.
 
@@ -169,14 +181,18 @@ In the headers in Postman we can see the rate limit information - what is the li
   <img 
     src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/006_header_rate_limiting.png?raw=true"
     alt="Rate Limiting"
-    width="400"
+    width="700"
   />
 </p>
+
+<br>
 
 Because we are using our Express server as a proxy server, we need to use the following:
 ```
 app.set('trust proxy', 1)
 ```
+
+<br>
 
 ## Caching
 
@@ -197,11 +213,11 @@ The minutes set depends on the API usage. For instance, if it's something that c
   <img 
     src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/007_cache_control_header.png?raw=true"
     alt="Cache Control Header"
-    width="400"
+    width="700"
   />
 </p>
 
----
+<br>
 
 Now we need to be able to use this backend code with out client side application, which we have in the public folder. The below code should load the index.html at localhost:5000:
 ```
@@ -219,11 +235,13 @@ Now, if we see in console, the API key is not visible. It is stored on the serve
 
 <p align="center">
   <img 
-    src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/008_api_key_hidden.png?raw=true"
+    src="https://github.com/siddhesh2263/api-proxy-server-traversy-media/blob/main/assets/008_api_hidden.png?raw=true"
     alt="API Key Hidden"
-    width="400"
+    width="700"
   />
 </p>
+
+<br>
 
 ## Deploy to Heroku (Skipped due to payment requirement as of now)
 
@@ -234,3 +252,7 @@ Create a .gitignore file.
 Create a Heroku account.
 
 28:10
+
+<br>
+
+## Conclusion
