@@ -1,0 +1,33 @@
+{
+  "name": "api-proxy-server-traversy-media",
+  "version": "1.0.0",
+  "description": "We will hide API keys.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddhesh2263/api-proxy-server-traversy-media.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/siddhesh2263/api-proxy-server-traversy-media/issues"
+  },
+  "homepage": "https://github.com/siddhesh2263/api-proxy-server-traversy-media#readme",
+  "dependencies": {
+    "apicache": "^1.6.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "needle": "^3.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
